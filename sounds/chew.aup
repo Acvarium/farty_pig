@@ -1,0 +1,116 @@
+<?xml version="1.0" standalone="no" ?>
+<!DOCTYPE project PUBLIC "-//audacityproject-1.3.0//DTD//EN" "http://audacity.sourceforge.net/xml/audacityproject-1.3.0.dtd" >
+<project xmlns="http://audacity.sourceforge.net/xml/" projname="chew_data" version="1.3.0" audacityversion="2.1.2" sel0="0.0988662132" sel1="0.3298639456" vpos="0" h="0.1118983593" zoom="8597.0876249429" rate="44100.0" snapto="off" selectionformat="hh:mm:ss + milliseconds" frequencyformat="Hz" bandwidthformat="octaves">
+	<tags/>
+	<wavetrack name="174942__abouch__chewing-on-carrot" channel="2" linked="0" mute="1" solo="0" height="150" minimized="0" isSelected="0" rate="48000" gain="1.0" pan="0.0">
+		<waveclip offset="0.00000000">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="19709">
+				<waveblock start="0">
+					<simpleblockfile filename="e0000353.au" len="4573" min="-0.006254" max="0.008076" rms="0.000324"/>
+				</waveblock>
+				<waveblock start="4573">
+					<simpleblockfile filename="e00001fb.au" len="15136" min="-0.48397" max="0.536013" rms="0.02079"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="Доріжка" channel="2" linked="0" mute="0" solo="0" height="150" minimized="0" isSelected="1" rate="44100" gain="1.0" pan="0.0">
+		<waveclip offset="0.09886621">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="10187">
+				<waveblock start="0">
+					<simpleblockfile filename="e0000e39.au" len="10187" min="-0.2" max="0.2" rms="0.079057"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="4">
+				<controlpoint t="0.027222998368" val="0.000000100000"/>
+				<controlpoint t="0.055837339728" val="0.957746505737"/>
+				<controlpoint t="0.105505322495" val="0.943661987782"/>
+				<controlpoint t="0.116555576272" val="0.084507048130"/>
+			</envelope>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="Доріжка" channel="2" linked="0" mute="0" solo="0" height="150" minimized="0" isSelected="0" rate="44100" gain="1.0" pan="0.0">
+		<waveclip offset="0.09886621">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="10231">
+				<waveblock start="0">
+					<simpleblockfile filename="e00008cb.au" len="10231" min="-0.2" max="0.2" rms="0.079057"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="10">
+				<controlpoint t="0.004860774277" val="0.570422530174"/>
+				<controlpoint t="0.019109785727" val="0.366197168827"/>
+				<controlpoint t="0.022657498782" val="0.985915482044"/>
+				<controlpoint t="0.030363596810" val="0.985915482044"/>
+				<controlpoint t="0.033038921409" val="0.816901445389"/>
+				<controlpoint t="0.053859925894" val="0.549295783043"/>
+				<controlpoint t="0.057116842797" val="0.211267590523"/>
+				<controlpoint t="0.059094256631" val="0.338028192520"/>
+				<controlpoint t="0.106203233260" val="0.126760542393"/>
+				<controlpoint t="0.117951397802" val="0.028169035912"/>
+			</envelope>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="Доріжка" channel="2" linked="0" mute="0" solo="0" height="150" minimized="0" isSelected="0" rate="44100" gain="1.0" pan="0.0">
+		<waveclip offset="0.09886621">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="10187">
+				<waveblock start="0">
+					<simpleblockfile filename="e0000561.au" len="10187" min="-0.2" max="0.2" rms="0.079057"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="14">
+				<controlpoint t="0.005355127736" val="0.000000100000"/>
+				<controlpoint t="0.024198718387" val="0.126760542393"/>
+				<controlpoint t="0.043856538265" val="0.225352108479"/>
+				<controlpoint t="0.054674155120" val="0.126760542393"/>
+				<controlpoint t="0.057814753562" val="0.394366204739"/>
+				<controlpoint t="0.065840727358" val="0.535211265087"/>
+				<controlpoint t="0.069097644261" val="0.253521144390"/>
+				<controlpoint t="0.070958739634" val="0.352112650871"/>
+				<controlpoint t="0.076076751909" val="0.408450722694"/>
+				<controlpoint t="0.077792449206" val="0.239436626434"/>
+				<controlpoint t="0.090093126437" val="0.000000100000"/>
+				<controlpoint t="0.092012381041" val="0.408450722694"/>
+				<controlpoint t="0.101201539445" val="0.239436626434"/>
+				<controlpoint t="0.106203233260" val="0.070422530174"/>
+			</envelope>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="Доріжка" channel="2" linked="0" mute="0" solo="0" height="150" minimized="0" isSelected="0" rate="44100" gain="1.0" pan="0.0">
+		<waveclip offset="0.09886621">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="10187">
+				<waveblock start="0">
+					<simpleblockfile filename="e0000b2a.au" len="10187" min="-0.2" max="0.2" rms="0.079057"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="11">
+				<controlpoint t="0.007448860030" val="0.000000100000"/>
+				<controlpoint t="0.032108373722" val="0.352112650871"/>
+				<controlpoint t="0.033155239870" val="0.380281686783"/>
+				<controlpoint t="0.036761112155" val="0.408450722694"/>
+				<controlpoint t="0.039523675599" val="0.281690120697"/>
+				<controlpoint t="0.091808823734" val="0.126760542393"/>
+				<controlpoint t="0.094106113335" val="0.281690120697"/>
+				<controlpoint t="0.114927117821" val="0.338028192520"/>
+				<controlpoint t="0.139702949974" val="0.126760542393"/>
+				<controlpoint t="0.155405942183" val="0.183098614216"/>
+				<controlpoint t="0.182508143553" val="0.070422530174"/>
+			</envelope>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="Доріжка" channel="2" linked="0" mute="0" solo="0" height="150" minimized="0" isSelected="0" rate="44100" gain="1.0" pan="0.0">
+		<waveclip offset="0.09886621">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="10187">
+				<waveblock start="0">
+					<simpleblockfile filename="e00004cf.au" len="10187" min="-0.2" max="0.2" rms="0.079057"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="4">
+				<controlpoint t="0.004191943128" val="0.000000100000"/>
+				<controlpoint t="0.121208314705" val="0.197183072567"/>
+				<controlpoint t="0.178088042042" val="0.239436626434"/>
+				<controlpoint t="0.182624462013" val="0.098591566086"/>
+			</envelope>
+		</waveclip>
+	</wavetrack>
+</project>

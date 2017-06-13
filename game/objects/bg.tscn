@@ -1,0 +1,198 @@
+[gd_scene load_steps=7 format=1]
+
+[ext_resource path="res://textures/bg/sky.png" type="Texture" id=1]
+[ext_resource path="res://textures/bg/forest.png" type="Texture" id=2]
+[ext_resource path="res://textures/bg/c2.png" type="Texture" id=3]
+[ext_resource path="res://textures/bg/c1.png" type="Texture" id=4]
+[ext_resource path="res://textures/bg/c0.png" type="Texture" id=5]
+[ext_resource path="res://scripts/water.gd" type="Script" id=6]
+
+[node name="bg" type="ParallaxBackground"]
+
+layer = -1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+scroll/offset = Vector2( 0, 0 )
+scroll/base_offset = Vector2( 0, 0 )
+scroll/base_scale = Vector2( 1, 1 )
+scroll/limit_begin = Vector2( 0, 0 )
+scroll/limit_end = Vector2( 0, 0 )
+scroll/ignore_camera_zoom = true
+
+[node name="sky" type="ParallaxLayer" parent="."]
+
+editor/display_folded = true
+visibility/visible = false
+motion/scale = Vector2( 0.2, 0.2 )
+motion/offset = Vector2( 0, 0 )
+motion/mirroring = Vector2( 640, 0 )
+
+[node name="TextureFrame" type="TextureFrame" parent="sky"]
+
+rect/scale = Vector2( 2, 2 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 35.0
+margin/right = 320.0
+margin/bottom = 216.0
+texture = ExtResource( 1 )
+stretch_mode = 0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="forest" type="ParallaxLayer" parent="."]
+
+editor/display_folded = true
+visibility/visible = false
+motion/scale = Vector2( 0.35, 0.35 )
+motion/offset = Vector2( 0, 0 )
+motion/mirroring = Vector2( 1280, 0 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="TextureFrame" type="TextureFrame" parent="forest"]
+
+rect/scale = Vector2( 2, 2 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 35.0
+margin/right = 640.0
+margin/bottom = 216.0
+texture = ExtResource( 2 )
+stretch_mode = 0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="cloud2" type="ParallaxLayer" parent="."]
+
+editor/display_folded = true
+motion/scale = Vector2( 0.4, 0.4 )
+motion/offset = Vector2( 0, 0 )
+motion/mirroring = Vector2( 780, 0 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="TextureFrame" type="TextureFrame" parent="cloud2"]
+
+visibility/opacity = 0.5
+rect/scale = Vector2( 2, 2 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 77.0
+margin/right = 401.0
+margin/bottom = 99.0
+texture = ExtResource( 3 )
+stretch_mode = 2
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="cloud1" type="ParallaxLayer" parent="."]
+
+editor/display_folded = true
+motion/scale = Vector2( 0.6, 0.6 )
+motion/offset = Vector2( 401, 0 )
+motion/mirroring = Vector2( 800, 0 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="TextureFrame" type="TextureFrame" parent="cloud1"]
+
+visibility/opacity = 0.8
+rect/scale = Vector2( 2, 2 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = -40.0
+margin/top = 51.0
+margin/right = 361.0
+margin/bottom = 73.0
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 2
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="cloud0" type="ParallaxLayer" parent="."]
+
+motion/scale = Vector2( 0.9, 0.9 )
+motion/offset = Vector2( 0, 0 )
+motion/mirroring = Vector2( 654, 0 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="TextureFrame" type="TextureFrame" parent="cloud0"]
+
+rect/scale = Vector2( 2, 2 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = -12.0
+margin/right = 327.0
+margin/bottom = 28.0
+texture = ExtResource( 5 )
+expand = true
+stretch_mode = 2
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="water2" type="ParallaxLayer" parent="."]
+
+visibility/opacity = 0.5
+transform/pos = Vector2( -14.056, 336.423 )
+z/relative = false
+motion/scale = Vector2( 1, 1 )
+motion/offset = Vector2( 0, 0 )
+motion/mirroring = Vector2( 672, 0 )
+script/script = ExtResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
+a = 0
+
+[node name="water1" type="ParallaxLayer" parent="."]
+
+visibility/opacity = 0.8
+transform/pos = Vector2( -6.05603, 344.423 )
+z/relative = false
+motion/scale = Vector2( 1, 1 )
+motion/offset = Vector2( 0, 0 )
+motion/mirroring = Vector2( 672, 0 )
+script/script = ExtResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
+a = 0
+
+[node name="water0" type="ParallaxLayer" parent="."]
+
+transform/pos = Vector2( 5.94397, 352.423 )
+z/z = 8
+motion/scale = Vector2( 1, 1 )
+motion/offset = Vector2( 0, 0 )
+motion/mirroring = Vector2( 672, 0 )
+script/script = ExtResource( 6 )
+a = 0
+
+
