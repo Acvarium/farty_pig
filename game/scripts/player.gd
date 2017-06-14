@@ -21,14 +21,26 @@ var main_node				# Посилання на головний вузол сцен�
 var velocity = Vector2(0,0)	# Вектор швидкості руху
 var shocked = false			# Ци вражено гравця електрошоком
 var eaten = false			# Чи гравця з'їдено
+var target
+var go_up_changed = false
 
 func _ready():
 	randomize()
 	main_node = get_node("/root/main")
 	jump_timer = get_node("jump_timer")
 	sit_timer = get_node("sit_timer")
+	if !human:
+		target = get_target()
+		get_node("jump_timer").set_wait_time(0.5)
 	set_process_input(true)
 	set_fixed_process(true)
+#
+func get_target():
+	for p in main_node.get_node("players").get_children():
+		if p.is_in_group("player"):
+			return p
+	return 0
+	
 
 # Визначення, чи гру програно
 func game_over():
@@ -114,7 +126,6 @@ func _fixed_process(delta):
 	velocity = get_linear_velocity()
 	if human:
 		if !shocked and (Input.is_action_pressed("ui_right") or r_button):
-			get_node("sprite_container").set_scale(Vector2(1,1))
 			if main_node.cam_speed:
 				velocity.x = RIGHT_FORCE * (main_node.cam_speed / 29) * delta
 			else:
@@ -122,7 +133,6 @@ func _fixed_process(delta):
 				
 			sit = false
 		if !shocked and (Input.is_action_pressed("ui_left") or l_button):
-			get_node("sprite_container").set_scale(Vector2(-1,1))
 			if main_node.cam_speed:
 				velocity.x = -RIGHT_FORCE * (main_node.cam_speed / 29) * delta
 			else:
@@ -130,7 +140,19 @@ func _fixed_process(delta):
 			sit = false
 
 # Якщо отримано сигнал руху вгору
+	var target_vector = Vector2(0,0)
+	if !human:
+		target_vector = target.get_pos() - get_pos()
+		velocity.x = (target_vector.normalized() * RIGHT_FORCE).x * delta
+		if target_vector.y < 5:
+			if !go_up_changed:
+				go_up_changed = true
+				jump(true)
+		else:
+			jump(false)
+			go_up_changed = false
 	if go_up:
+
 		get_node("anim").play("fly_x" + str(balloons))
 		get_node("sound").play("jump-c-01")
 		sit = false
@@ -139,7 +161,6 @@ func _fixed_process(delta):
 
 # Костильний метод вирішення проблеми обертання персонажа
 	set_rot(0)
-	
 	var linear_velocity = velocity
 	if main_node.cam_speed:
 		linear_velocity = Vector2(velocity.x * (1 - (main_node.cam_speed * 0.001)), velocity.y)
@@ -148,9 +169,16 @@ func _fixed_process(delta):
 		sit = true
 		sit_timer.start()
 
+
+	if get_linear_velocity().x >= 0:
+		get_node("sprite_container").set_scale(Vector2(1,1))
+	else:
+		get_node("sprite_container").set_scale(Vector2(-1,1))
+		
 # Якщо час таймера стрибка сплив
 func _on_jump_timer_timeout():
 	if !shocked:
+		go_up_changed = false
 		go_up = true # Виконати ще один стрибок
 
 # Якщо приземлився на землю
@@ -190,7 +218,7 @@ func _on_balloons_area_enter( area ):
 		var vector = get_linear_velocity()
 		vector.y = 0
 		set_linear_velocity(vector)
-		if area.is_in_group("needles"):
+		if area.is_in_group("needles") and human:
 			if balloons > 0:
 				set_balloons(balloons - 1)
 	elif area.is_in_group("eater"):

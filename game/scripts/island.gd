@@ -43,19 +43,19 @@ func add_creature(c_num):
 		creature = plant_obj.instance()
 		creature.set_pos(Vector2(int(randf() * 50 - 25),-30))
 	get_node("creatures").add_child(creature)
-
-func _on_Area2D_body_enter( body ):
-	if body.is_in_group("player"):
-		if !balloon_enter:
-			var balloons = body.get_balloons()
-			if balloons > 0:
-				body.set_balloons(balloons - 1)
-			balloon_enter = true
-		
-
-
-func _on_Area2D_body_exit( body ):
-	get_node("Timer").start()
+#
+#func _on_Area2D_body_enter( body ):
+#	if body.is_in_group("player"):
+#		if !balloon_enter:
+#			var balloons = body.get_balloons()
+#			if balloons > 0:
+#				body.set_balloons(balloons - 1)
+#			balloon_enter = true
+#		
+#
+#
+#func _on_Area2D_body_exit( body ):
+#	get_node("Timer").start()
 
 func _on_Timer_timeout():
 	balloon_enter = false

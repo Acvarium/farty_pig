@@ -13,12 +13,12 @@
 custom_solver_bias = 0.0
 extents = Vector2( 14, 12 )
 
-[sub_resource type="RectangleShape2D" id=11]
+[sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
 extents = Vector2( 7.74411, 2.77452 )
 
-[sub_resource type="CapsuleShape2D" id=12]
+[sub_resource type="CapsuleShape2D" id=3]
 
 custom_solver_bias = 0.0
 radius = 8.77326
@@ -482,13 +482,13 @@ samples/sit01 = {
 "sample": ExtResource( 7 )
 }
 
-[sub_resource type="CapsuleShape2D" id=2]
+[sub_resource type="CapsuleShape2D" id=11]
 
 custom_solver_bias = 0.0
 radius = 8.15688
 height = 6.37556
 
-[sub_resource type="CapsuleShape2D" id=3]
+[sub_resource type="CapsuleShape2D" id=12]
 
 custom_solver_bias = 0.0
 radius = 8.61476
@@ -558,7 +558,7 @@ autostart = false
 
 editor/display_folded = true
 input/pickable = true
-shapes/0/shape = SubResource( 11 )
+shapes/0/shape = SubResource( 2 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, -5, 14 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -569,7 +569,7 @@ angular_damp = 1.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="sprite_container/Area2D"]
 
 transform/pos = Vector2( -5, 14 )
-shape = SubResource( 11 )
+shape = SubResource( 2 )
 trigger = false
 _update_shape_index = 0
 
@@ -584,7 +584,7 @@ hframes = 6
 ]]
 
 input/pickable = true
-shapes/0/shape = SubResource( 12 )
+shapes/0/shape = SubResource( 3 )
 shapes/0/transform = Matrix32( -4.37114e-08, -1, 1, -4.37114e-08, 6.22453, 1.49752 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -598,7 +598,7 @@ collision/mask = 3
 
 transform/pos = Vector2( 6.22453, 1.49752 )
 transform/rot = 90.0
-shape = SubResource( 12 )
+shape = SubResource( 3 )
 trigger = false
 _update_shape_index = 0
 
@@ -650,10 +650,10 @@ max_lines_visible = -1
 ]]
 
 input/pickable = true
-shapes/0/shape = SubResource( 2 )
+shapes/0/shape = SubResource( 11 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 6, -20 )
 shapes/0/trigger = true
-shapes/1/shape = SubResource( 3 )
+shapes/1/shape = SubResource( 12 )
 shapes/1/transform = Matrix32( 1, 0, 0, 1, -8, -22 )
 shapes/1/trigger = true
 gravity_vec = Vector2( 0, 1 )
@@ -664,14 +664,14 @@ angular_damp = 1.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="balloons"]
 
 transform/pos = Vector2( 6, -20 )
-shape = SubResource( 2 )
+shape = SubResource( 11 )
 trigger = true
 _update_shape_index = 0
 
 [node name="CollisionShape2D 2" type="CollisionShape2D" parent="balloons"]
 
 transform/pos = Vector2( -8, -22 )
-shape = SubResource( 3 )
+shape = SubResource( 12 )
 trigger = true
 _update_shape_index = 1
 
