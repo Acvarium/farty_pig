@@ -1,16 +1,14 @@
-[gd_scene load_steps=15 format=1]
+[gd_scene load_steps=13 format=1]
 
 [ext_resource path="res://scripts/main.gd" type="Script" id=1]
-[ext_resource path="res://textures/character.tex" type="Texture" id=2]
-[ext_resource path="res://scripts/sprite_per_grid.gd" type="Script" id=3]
-[ext_resource path="res://objects/player.tscn" type="PackedScene" id=4]
-[ext_resource path="res://objects/island.tscn" type="PackedScene" id=5]
-[ext_resource path="res://objects/plant.tscn" type="PackedScene" id=6]
-[ext_resource path="res://objects/balloon.tscn" type="PackedScene" id=7]
-[ext_resource path="res://objects/fire_ball.tscn" type="PackedScene" id=8]
-[ext_resource path="res://textures/rain.png" type="Texture" id=9]
-[ext_resource path="res://objects/bg.tscn" type="PackedScene" id=10]
-[ext_resource path="res://textures/box01.png" type="Texture" id=11]
+[ext_resource path="res://objects/player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://objects/island.tscn" type="PackedScene" id=3]
+[ext_resource path="res://objects/plant.tscn" type="PackedScene" id=4]
+[ext_resource path="res://objects/balloon.tscn" type="PackedScene" id=5]
+[ext_resource path="res://objects/fire_ball.tscn" type="PackedScene" id=6]
+[ext_resource path="res://textures/rain.png" type="Texture" id=7]
+[ext_resource path="res://objects/bg.tscn" type="PackedScene" id=8]
+[ext_resource path="res://textures/box01.png" type="Texture" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -40,75 +38,65 @@ margin/bottom = 0.0
 script/script = ExtResource( 1 )
 create_islands = true
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="players" type="Node2D" parent="."]
 
-[node name="sprite" type="Sprite" parent="Node2D"]
-
-visibility/visible = false
-transform/pos = Vector2( 110, 46 )
-transform/scale = Vector2( 2, 2 )
-texture = ExtResource( 2 )
-hframes = 2
-frame = 1
-script/script = ExtResource( 3 )
-
-[node name="player" parent="Node2D" groups=[
-"player",
-] instance=ExtResource( 4 )]
+[node name="player" parent="players" instance=ExtResource( 2 )]
 
 transform/pos = Vector2( 215.998, 261.477 )
 z/z = 2
 gravity_scale = 0.9
 human = true
 
-[node name="island" parent="Node2D" instance=ExtResource( 5 )]
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="island" parent="Node2D" instance=ExtResource( 3 )]
 
 transform/pos = Vector2( 224, 288 )
 
-[node name="island1" parent="Node2D" instance=ExtResource( 5 )]
+[node name="island1" parent="Node2D" instance=ExtResource( 3 )]
 
 transform/pos = Vector2( 400, 160 )
 
-[node name="island2" parent="Node2D" instance=ExtResource( 5 )]
+[node name="island2" parent="Node2D" instance=ExtResource( 3 )]
 
 transform/pos = Vector2( 464, 304 )
 
-[node name="island3" parent="Node2D" instance=ExtResource( 5 )]
+[node name="island3" parent="Node2D" instance=ExtResource( 3 )]
 
 transform/pos = Vector2( 640, 160 )
 
-[node name="island4" parent="Node2D" instance=ExtResource( 5 )]
+[node name="island4" parent="Node2D" instance=ExtResource( 3 )]
 
 transform/pos = Vector2( 928, 192 )
 
-[node name="island5" parent="Node2D" instance=ExtResource( 5 )]
+[node name="island5" parent="Node2D" instance=ExtResource( 3 )]
 
 transform/pos = Vector2( 1104, 320 )
 
-[node name="island6" parent="Node2D" instance=ExtResource( 5 )]
+[node name="island6" parent="Node2D" instance=ExtResource( 3 )]
 
 transform/pos = Vector2( 784, 256 )
 
-[node name="plant" parent="Node2D" instance=ExtResource( 6 )]
+[node name="plant" parent="Node2D" instance=ExtResource( 4 )]
 
 visibility/visible = false
 
-[node name="balloon" parent="Node2D" instance=ExtResource( 7 )]
+[node name="balloon" parent="Node2D" instance=ExtResource( 5 )]
 
 visibility/visible = false
 
-[node name="fire_ball" parent="Node2D" instance=ExtResource( 8 )]
+[node name="fire_ball" parent="Node2D" instance=ExtResource( 6 )]
 
 transform/pos = Vector2( 370.242, 236.079 )
 
-[node name="fire_ball1" parent="Node2D" instance=ExtResource( 8 )]
+[node name="fire_ball1" parent="Node2D" instance=ExtResource( 6 )]
 
 transform/pos = Vector2( 858.055, 209.943 )
 type = 2
 move_pos = Vector2( -50, -250 )
 speed = 30
 
-[node name="fire_ball2" parent="Node2D" instance=ExtResource( 8 )]
+[node name="fire_ball2" parent="Node2D" instance=ExtResource( 6 )]
 
 transform/pos = Vector2( 586.011, 244.152 )
 move_pos = Vector2( 0, -200 )
@@ -147,7 +135,7 @@ config/lifetime = 2.0
 config/process_mode = 1
 config/half_extents = Vector2( 800, 0 )
 config/local_space = false
-config/texture = ExtResource( 9 )
+config/texture = ExtResource( 7 )
 params/direction = 315.0
 params/spread = 0.0
 params/linear_velocity = 600.0
@@ -257,7 +245,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="bg" parent="." instance=ExtResource( 10 )]
+[node name="bg" parent="." instance=ExtResource( 8 )]
 
 [node name="ui" type="CanvasLayer" parent="."]
 
@@ -282,7 +270,7 @@ margin/bottom = 276.0
 toggle_mode = false
 enabled_focus_mode = 0
 shortcut = null
-textures/normal = ExtResource( 11 )
+textures/normal = ExtResource( 9 )
 params/resize_mode = 0
 params/stretch_mode = 0
 
@@ -301,7 +289,7 @@ margin/bottom = 27.0
 toggle_mode = false
 enabled_focus_mode = 0
 shortcut = null
-textures/normal = ExtResource( 11 )
+textures/normal = ExtResource( 9 )
 params/resize_mode = 0
 params/stretch_mode = 0
 
@@ -320,7 +308,7 @@ margin/bottom = 27.0
 toggle_mode = false
 enabled_focus_mode = 0
 shortcut = null
-textures/normal = ExtResource( 11 )
+textures/normal = ExtResource( 9 )
 params/resize_mode = 0
 params/stretch_mode = 0
 

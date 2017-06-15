@@ -14,7 +14,7 @@ var on_floor = false 		# Чи стоїть персонаж на землі
 var r_button = false		# Чи в цім кадрі було отримано сигнал рухатись праворуч
 var l_button = false		# Чи в цім кадрі було отримано сигнал рухатись ліворуч
 var sit = false
-var balloons = 2			# Кількість накачаних кульок над головою у персонажа
+export var balloons = 1			# Кількість накачаних кульок над головою у персонажа
 var balloons_left = 2		# Кількість кульок, що залишились, котрі можна накачати при потребі
 var score = 0				# Рахунок
 var main_node				# Посилання на головний вузол сцени
@@ -24,18 +24,30 @@ var eaten = false			# Чи гравця з'їдено
 var target
 var go_up_changed = false
 var direction_pressed = false
+var random_point = Vector2(0,0)
 
 func _ready():
 	randomize()
+	random_point = get_rand_point()
+	get_node("ray").add_exception(self)
 	main_node = get_node("/root/main")
 	jump_timer = get_node("jump_timer")
 	sit_timer = get_node("sit_timer")
 	if !human:
+		add_to_group("e")
+		get_node("random_points").set_autostart(true)
+		get_node("random_points").start()
+		
 		target = get_target()
 		get_node("jump_timer").set_wait_time(0.5)
 	set_process_input(true)
 	set_fixed_process(true)
 #
+
+func get_rand_point():
+	var screen = get_tree().get_root().get_rect().size
+	return  Vector2(randf() * screen.x, randf() * screen.y)
+
 func get_target():
 	for p in main_node.get_node("players").get_children():
 		if p.is_in_group("player"):
@@ -68,6 +80,10 @@ func set_balloons(b):
 		get_node("anim").play("fly_x" + str(balloons))
 		get_node("sound").play("jump-c-01")
 		get_node("b_label").set_text(str(balloons_left))
+	if balloons == 0:
+		set_gravity_scale(2.5)
+	else:
+		set_gravity_scale(1)
 
 # Отримання рахунку
 func get_score():
@@ -142,19 +158,39 @@ func _fixed_process(delta):
 			sit = false
 			direction_pressed = true
 
-# Якщо отримано сигнал руху вгору
 	var target_vector = Vector2(0,0)
+
 	if !human:
 		if balloons > 0:
 			target_vector = target.get_pos() - get_pos()
-			velocity.x = (target_vector.normalized() * RIGHT_FORCE).x * delta
-			if target_vector.y < 5:
+			if target_vector.length() > 150:
+				
+				target_vector = random_point - get_pos()
+				if target_vector.length() < 15:
+					random_point = get_rand_point()
+			var barrier = false
+			get_node("ray").set_cast_to(target_vector)
+			if get_node("ray").is_colliding():
+				var cast = get_node("ray").get_collider()
+				if cast:
+					if cast.is_in_group("island"):
+						barrier = true
+						print("_____  ", cast.get_name())
+			if !barrier:
+				velocity.x = (target_vector.normalized() * RIGHT_FORCE).x * delta
+			else:
+				var cast_dist = (get_pos() - get_node("ray").get_collision_point()).length()
+				if cast_dist < 30:
+					velocity.x = -(target_vector.normalized() * RIGHT_FORCE).x * delta
+			if target_vector.y < 5 and !barrier:
 				if !go_up_changed:
 					go_up_changed = true
 					jump(true)
 			else:
 				jump(false)
 				go_up_changed = false
+				
+# Якщо отримано сигнал руху вгору
 	if go_up:
 		get_node("anim").play("fly_x" + str(balloons))
 		get_node("sound").play("jump-c-01")
@@ -207,7 +243,7 @@ func _on_eater_body_enter( body ):
 		if body.is_in_group("food"):
 			body.queue_free()
 			eat(body.energy)
-			print(body.get_name())
+
 		elif body.is_in_group("balloon"):
 			add_balloon(1)
 			body.queue_free()
@@ -217,7 +253,6 @@ func _on_balloons_body_enter( body ):
 	pass
 
 func _on_balloons_area_enter( area ):
-	print(area.get_node("..").get_name())
 	if area.get_node("..").is_in_group("island"):
 		var vector = get_linear_velocity()
 		vector.y = 0
@@ -226,5 +261,11 @@ func _on_balloons_area_enter( area ):
 			if balloons > 0:
 				set_balloons(balloons - 1)
 	elif area.is_in_group("eater"):
+		if !human and area.get_node("../..").is_in_group("e"):
+			return
 		if balloons > 0:
 			set_balloons(balloons - 1)
+
+
+func _on_random_points_timeout():
+	random_point = get_rand_point()

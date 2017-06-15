@@ -509,7 +509,7 @@ mode = 0
 mass = 1.0
 friction = 0.6
 bounce = 0.0
-gravity_scale = 200.0
+gravity_scale = 1.0
 custom_integrator = false
 continuous_cd = 0
 contacts_reported = 0
@@ -522,6 +522,7 @@ damp_override/linear = -1.0
 damp_override/angular = -1.0
 script/script = ExtResource( 1 )
 human = false
+balloons = 1
 
 [node name="balloon" type="Sprite" parent="."]
 
@@ -582,6 +583,7 @@ hframes = 6
 "eater",
 ]]
 
+editor/display_folded = true
 input/pickable = true
 shapes/0/shape = SubResource( 3 )
 shapes/0/transform = Matrix32( -4.37114e-08, -1, 1, -4.37114e-08, 6.22453, 1.49752 )
@@ -674,6 +676,20 @@ shape = SubResource( 12 )
 trigger = true
 _update_shape_index = 1
 
+[node name="ray" type="RayCast2D" parent="."]
+
+enabled = true
+cast_to = Vector2( 0, 180 )
+layer_mask = 3
+type_mask = 15
+
+[node name="random_points" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 2.0
+one_shot = false
+autostart = false
+
 [connection signal="timeout" from="jump_timer" to="." method="_on_jump_timer_timeout"]
 
 [connection signal="timeout" from="sit_timer" to="." method="_on_sit_timer_timeout"]
@@ -687,5 +703,7 @@ _update_shape_index = 1
 [connection signal="area_enter" from="balloons" to="." method="_on_balloons_area_enter"]
 
 [connection signal="body_enter" from="balloons" to="." method="_on_balloons_body_enter"]
+
+[connection signal="timeout" from="random_points" to="." method="_on_random_points_timeout"]
 
 
