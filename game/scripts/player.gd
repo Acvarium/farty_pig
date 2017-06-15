@@ -23,6 +23,7 @@ var shocked = false			# Ци вражено гравця електрошоко�
 var eaten = false			# Чи гравця з'їдено
 var target
 var go_up_changed = false
+var direction_pressed = false
 
 func _ready():
 	randomize()
@@ -130,6 +131,7 @@ func _fixed_process(delta):
 				velocity.x = RIGHT_FORCE * (main_node.cam_speed / 29) * delta
 			else:
 				velocity.x = RIGHT_FORCE * delta
+			direction_pressed = true
 				
 			sit = false
 		if !shocked and (Input.is_action_pressed("ui_left") or l_button):
@@ -138,21 +140,22 @@ func _fixed_process(delta):
 			else:
 				velocity.x = -RIGHT_FORCE * delta
 			sit = false
+			direction_pressed = true
 
 # Якщо отримано сигнал руху вгору
 	var target_vector = Vector2(0,0)
 	if !human:
-		target_vector = target.get_pos() - get_pos()
-		velocity.x = (target_vector.normalized() * RIGHT_FORCE).x * delta
-		if target_vector.y < 5:
-			if !go_up_changed:
-				go_up_changed = true
-				jump(true)
-		else:
-			jump(false)
-			go_up_changed = false
+		if balloons > 0:
+			target_vector = target.get_pos() - get_pos()
+			velocity.x = (target_vector.normalized() * RIGHT_FORCE).x * delta
+			if target_vector.y < 5:
+				if !go_up_changed:
+					go_up_changed = true
+					jump(true)
+			else:
+				jump(false)
+				go_up_changed = false
 	if go_up:
-
 		get_node("anim").play("fly_x" + str(balloons))
 		get_node("sound").play("jump-c-01")
 		sit = false
@@ -169,11 +172,12 @@ func _fixed_process(delta):
 		sit = true
 		sit_timer.start()
 
-
-	if get_linear_velocity().x >= 0:
-		get_node("sprite_container").set_scale(Vector2(1,1))
-	else:
-		get_node("sprite_container").set_scale(Vector2(-1,1))
+	if direction_pressed or !human:
+		direction_pressed = false
+		if get_linear_velocity().x >= 0:
+			get_node("sprite_container").set_scale(Vector2(1,1))
+		else:
+			get_node("sprite_container").set_scale(Vector2(-1,1))
 		
 # Якщо час таймера стрибка сплив
 func _on_jump_timer_timeout():

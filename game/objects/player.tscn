@@ -498,7 +498,6 @@ height = 8.06917
 "player",
 ]]
 
-transform/pos = Vector2( 110, 46 )
 z/relative = false
 input/pickable = false
 shapes/0/shape = SubResource( 1 )
